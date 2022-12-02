@@ -42,8 +42,11 @@
   .zip-code,
   .search-button {
     margin-left: 10em;
+    
   }
 }
+
+
 .search-button {
   padding-top: 5px;
 }
@@ -53,6 +56,7 @@
    justify-content: center;
    height: 375px;
 }
+
 .display-innerbox{
   border: 1px solid #3c2b64;
   background: linear-gradient(30deg, #1111D6 0%, #fff 100%);
@@ -64,6 +68,17 @@
 @media only screen and (max-width: 450px){
   .display-innerbox{
     width: 90%;
+  }
+  .city-name, .zip-code{
+    border: 1px solid blue;
+   width: 5em;
+  }
+  .zip-code{
+    margin-left: 25px;
+  }
+  .search-button{
+ font-size: 8px;
+  margin-left: 35px;
   }
 }
 .date{

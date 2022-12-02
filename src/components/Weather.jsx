@@ -3,6 +3,7 @@ import "./Weather.css";
 import api from "./api";
 import { BsCloudSun } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
+import axios from "axios";
 const Weather = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -103,11 +104,17 @@ const Weather = () => {
     return `${day} ${month} ${year}`;
   }
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
-    const fetchWeather = async () => {
+    axios.get("https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce")
+      .then((response) => {
+        const {latitude} = response.data
+        const { longitude } = response.data
+        setLatitude(latitude)
+        setLongitude(longitude)
+      } )
+    .catch(err=>console.log(err))
+  },[])
+  useEffect(() => {
+      const fetchWeather = async () => {
       try {
         const responses = await api.get("/current.json", {
           params: {
@@ -188,7 +195,7 @@ const Weather = () => {
             <h4>Search by City Name or Zip Code</h4>
           </div>
           <div class="row g-3 main-search">
-            <div class="col-3">
+            <div class="col-3 ">
               <input
                 className="form-control city-name"
                 ref={newLocation}
