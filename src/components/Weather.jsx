@@ -104,20 +104,24 @@ const Weather = () => {
     }
     return `${day} ${month} ${year}`;
   }
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
+  //     )
+  //     .then((response) => {
+  //       const { latitude } = response.data;
+  //       const { longitude } = response.data;
+  //       setLatitude(latitude);
+  //       setLongitude(longitude);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   useEffect(() => {
-    axios
-      .get(
-        "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
-      )
-      .then((response) => {
-        const { latitude } = response.data;
-        const { longitude } = response.data;
-        setLatitude(latitude);
-        setLongitude(longitude);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
     const fetchWeather = async () => {
       try {
         const responses = await api.get("/current.json", {
