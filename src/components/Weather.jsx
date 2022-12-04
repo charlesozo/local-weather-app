@@ -16,6 +16,7 @@ const Weather = () => {
   const [zipCode, setZipCode] = useState("");
   const [checker, setChecker] = useState(false);
   const [changeUnit, setChangeUnit] = useState(true);
+  const [changeWeatherSpeed, setChangeWeatherSpeed] = useState(true)
   const newLocation = useRef(null);
   const months = [
     "Jan",
@@ -125,6 +126,7 @@ const Weather = () => {
           },
         });
         if (responses) {
+          console.log(responses)
           const [date, time] = responses.data.location.localtime.split(" ");
           const { name } = responses.data.location;
           const { country } = responses.data.location;
@@ -176,6 +178,13 @@ const Weather = () => {
     } else {
       setChangeUnit(true);
     }
+  }
+  function convertWeatherSpeed() {
+          if (changeWeatherSpeed) {
+        setChangeWeatherSpeed(false);
+      } else {
+        setChangeWeatherSpeed(true);
+      }
   }
   return (
     <main>
@@ -243,14 +252,16 @@ const Weather = () => {
                   <div className="val">{currentData.humidity}</div>
                 </div>
                 <div className="wind">
-                  Wind
-                  <div className="val">{currentData.wind_kph}kph</div>
+                  Windspeed 
+                  <div className="val"  style={{ cursor: "pointer" }} onClick={convertWeatherSpeed}>{changeWeatherSpeed ? currentData.wind_kph : currentData.wind_mph}<span style={{color: "darkblue"}}>  {changeWeatherSpeed ? "kph" : "mph"}</span></div>
                 </div>
               </div>
+                  <div style={{color: "red", textAlign: "center"}}>Powered by <a href="https://www.weatherapi.com/" title="Weather API" style={{textDecoration: "none", color: "green"}}>WeatherAPI.com</a></div>
             </div>
           </div>
         </div>
       </div>
+    
     </main>
   );
 };

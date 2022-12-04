@@ -10,7 +10,7 @@ body {
   background-image: url("../public/images/weather-2.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
+  background-position: bottom center;
   overflow: hidden;
   
 }
