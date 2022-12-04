@@ -5,8 +5,7 @@ import { BsCloudSun } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
 import axios from "axios";
 const Weather = () => {
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+  const [currentCity, setCurrentCity] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
@@ -16,7 +15,7 @@ const Weather = () => {
   const [zipCode, setZipCode] = useState("");
   const [checker, setChecker] = useState(false);
   const [changeUnit, setChangeUnit] = useState(true);
-  const [changeWeatherSpeed, setChangeWeatherSpeed] = useState(true)
+  const [changeWeatherSpeed, setChangeWeatherSpeed] = useState(true);
   const newLocation = useRef(null);
   const months = [
     "Jan",
@@ -104,33 +103,31 @@ const Weather = () => {
     }
     return `${day} ${month} ${year}`;
   }
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
-  //     )
-  //     .then((response) => {
-  //       const { latitude } = response.data;
-  //       const { longitude } = response.data;
-  //       setLatitude(latitude);
-  //       setLongitude(longitude);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
+    axios
+      .get(
+        "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
+      )
+      .then((response) => {
+        if (response) {
+          const { city } = response.data;
+          setCurrentCity(city);
+        } else {
+          alert("unable to get current user location");
+        }
+      })
+      .catch((err) => console.log(err));
+
     const fetchWeather = async () => {
       try {
         const responses = await api.get("/current.json", {
           params: {
-            q: `${latitude},${longitude}`,
+            q: currentCity,
           },
         });
         if (responses) {
-          console.log(responses)
+          console.log(responses);
           const [date, time] = responses.data.location.localtime.split(" ");
           const { name } = responses.data.location;
           const { country } = responses.data.location;
@@ -144,7 +141,7 @@ const Weather = () => {
       }
     };
     fetchWeather();
-  }, [latitude, longitude]);
+  }, [currentCity]);
   const searchLocation = async () => {
     try {
       const responses = await api.get("/current.json", {
@@ -184,11 +181,11 @@ const Weather = () => {
     }
   }
   function convertWeatherSpeed() {
-          if (changeWeatherSpeed) {
-        setChangeWeatherSpeed(false);
-      } else {
-        setChangeWeatherSpeed(true);
-      }
+    if (changeWeatherSpeed) {
+      setChangeWeatherSpeed(false);
+    } else {
+      setChangeWeatherSpeed(true);
+    }
   }
   return (
     <main>
@@ -256,16 +253,36 @@ const Weather = () => {
                   <div className="val">{currentData.humidity}</div>
                 </div>
                 <div className="wind">
-                  Windspeed 
-                  <div className="val"  style={{ cursor: "pointer" }} onClick={convertWeatherSpeed}>{changeWeatherSpeed ? currentData.wind_kph : currentData.wind_mph}<span style={{color: "darkblue"}}>  {changeWeatherSpeed ? "kph" : "mph"}</span></div>
+                  Windspeed
+                  <div
+                    className="val"
+                    style={{ cursor: "pointer" }}
+                    onClick={convertWeatherSpeed}
+                  >
+                    {changeWeatherSpeed
+                      ? currentData.wind_kph
+                      : currentData.wind_mph}
+                    <span style={{ color: "darkblue" }}>
+                      {" "}
+                      {changeWeatherSpeed ? "kph" : "mph"}
+                    </span>
+                  </div>
                 </div>
               </div>
-                  <div style={{color: "red", textAlign: "center"}}>Powered by <a href="https://www.weatherapi.com/" title="Weather API" style={{textDecoration: "none", color: "green"}}>WeatherAPI.com</a></div>
+              <div style={{ color: "red", textAlign: "center" }}>
+                Powered by{" "}
+                <a
+                  href="https://www.weatherapi.com/"
+                  title="Weather API"
+                  style={{ textDecoration: "none", color: "green" }}
+                >
+                  WeatherAPI.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    
     </main>
   );
 };
