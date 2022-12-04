@@ -11,17 +11,16 @@
   color: #1116e2;
 }
 .weather-main-2 {
-  /* border: 1px solid green; */
   height: 85vh;
 }
 .current-location {
-  /* border: 1px solid yellow; */
   margin-top: 5px;
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
 }
 .country-name {
   color: green;
+  font-weight: 700;
 }
 .title-search {
   /* border: 1px solid red; */
