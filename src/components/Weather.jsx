@@ -15,7 +15,7 @@ const Weather = () => {
   const [destinatedLocation, setDestinatedLocation] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [checker, setChecker] = useState(false);
-  const [changeUnit, setChangeUnit] = useState(true)
+  const [changeUnit, setChangeUnit] = useState(true);
   const newLocation = useRef(null);
   const months = [
     "Jan",
@@ -104,17 +104,20 @@ const Weather = () => {
     return `${day} ${month} ${year}`;
   }
   useEffect(() => {
-    axios.get("https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce")
+    axios
+      .get(
+        "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
+      )
       .then((response) => {
-        const {latitude} = response.data
-        const { longitude } = response.data
-        setLatitude(latitude)
-        setLongitude(longitude)
-      } )
-    .catch(err=>console.log(err))
-  },[])
+        const { latitude } = response.data;
+        const { longitude } = response.data;
+        setLatitude(latitude);
+        setLongitude(longitude);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   useEffect(() => {
-      const fetchWeather = async () => {
+    const fetchWeather = async () => {
       try {
         const responses = await api.get("/current.json", {
           params: {
@@ -169,11 +172,11 @@ const Weather = () => {
   };
   function convertTempUnit() {
     if (changeUnit) {
-   setChangeUnit(false)
+      setChangeUnit(false);
     } else {
-      setChangeUnit(true)
+      setChangeUnit(true);
+    }
   }
-}
   return (
     <main>
       <div className="container-fluid weather-body">
@@ -224,7 +227,16 @@ const Weather = () => {
               <div className="temperature-box">
                 <div className="temp">
                   Temp
-                  <div className="val" style={{cursor: "pointer"}} onClick={convertTempUnit}>{changeUnit ? currentData.temp_c  : currentData.temp_f}<span style={{color: "darkblue"}}>{changeUnit ? "°C" : "°F"}</span></div>
+                  <div
+                    className="val"
+                    style={{ cursor: "pointer" }}
+                    onClick={convertTempUnit}
+                  >
+                    {changeUnit ? currentData.temp_c : currentData.temp_f}
+                    <span style={{ color: "darkblue" }}>
+                      {changeUnit ? "°C" : "°F"}
+                    </span>
+                  </div>
                 </div>
                 <div className="humidity">
                   Humidity
