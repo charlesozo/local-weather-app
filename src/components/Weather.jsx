@@ -4,7 +4,7 @@ import api from "./api";
 import { BsCloudSun } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
 import axios from "axios";
-const Weather = () => {
+const Weather = ({latitude, longitude}) => {
   const [currentCity, setCurrentCity] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [currentTime, setCurrentTime] = useState("");
@@ -17,6 +17,8 @@ const Weather = () => {
   const [changeUnit, setChangeUnit] = useState(true);
   const [changeWeatherSpeed, setChangeWeatherSpeed] = useState(true);
   const newLocation = useRef(null);
+  console.log(latitude)
+  console.log(longitude)
   const months = [
     "Jan",
     "Feb",
@@ -123,7 +125,7 @@ const Weather = () => {
       try {
         const responses = await api.get("/current.json", {
           params: {
-            q: currentCity,
+            q: `${latitude},${longitude}` || currentCity,
           },
         });
         if (responses) {

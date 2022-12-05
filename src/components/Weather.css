@@ -70,14 +70,15 @@
   }
   .city-name, .zip-code{
     border: 1px solid blue;
-   width: 5em;
+   width: 6em;
+
   }
   .zip-code{
     margin-left: 25px;
   }
   .search-button{
  font-size: 8px;
-  margin-left: 35px;
+  margin-left: 50px;
   }
 }
 .date{
