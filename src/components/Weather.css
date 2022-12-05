@@ -41,7 +41,7 @@
   .zip-code,
   .search-button {
     margin-left: 10em;
-    
+   
   }
 }
 
@@ -68,9 +68,10 @@
   .display-innerbox{
     width: 90%;
   }
-  .city-name, .zip-code{
+  .city-name, .zip-code,.form-control{
     border: 1px solid blue;
    width: 6em;
+   font-size: 0.7rem;
 
   }
   .zip-code{
