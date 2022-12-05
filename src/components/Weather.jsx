@@ -107,25 +107,25 @@ const Weather = ({latitude, longitude}) => {
   }
 
   useEffect(() => {
-    axios
-      .get(
-        "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
-      )
-      .then((response) => {
-        if (response) {
-          const { city } = response.data;
-          setCurrentCity(city);
-        } else {
-          alert("unable to get current user location");
-        }
-      })
-      .catch((err) => console.log(err));
+    // axios
+    //   .get(
+    //     "https://geolocation-db.com/json/67273a00-5c4b-11ed-9204-d161c2da74ce"
+    //   )
+    //   .then((response) => {
+    //     if (response) {
+    //       const { city } = response.data;
+    //       setCurrentCity(city);
+    //     } else {
+    //       alert("unable to get current user location");
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
 
     const fetchWeather = async () => {
       try {
         const responses = await api.get("/current.json", {
           params: {
-            q:  "auto:ip",
+            q:  `${latitude},${longitude}`,
           },
         });
         if (responses) {
@@ -143,7 +143,7 @@ const Weather = ({latitude, longitude}) => {
       }
     };
     fetchWeather();
-  }, [currentCity]);
+  }, [latitude,longitude]);
   const searchLocation = async () => {
     try {
       const responses = await api.get("/current.json", {

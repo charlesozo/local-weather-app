@@ -15,11 +15,21 @@ function success(pos) {
   setLongitude(longitude)
 }
 
-function error(pos) {
-    console.log(pos)
+
+function error(err) {
+  if (err.code == 1) {
+   alert("Please allow access to geolocation")
+  }
+  else {
+    alert("Location Unavailable")
+  }
 }
 
-const options = {}
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 4000
+  
+}
 navigator.geolocation.getCurrentPosition(success, error, options)
   return (
     <div className="App">
