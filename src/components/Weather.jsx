@@ -125,7 +125,7 @@ const Weather = ({latitude, longitude}) => {
       try {
         const responses = await api.get("/current.json", {
           params: {
-            q: `${latitude},${longitude}` || currentCity || "auto:ip",
+            q:  "auto:ip",
           },
         });
         if (responses) {
