@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&family=Lato&family=Open+Sans&family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&family=Lato&family=Open+Sans&family=Source+Sans+Pro&display=swap");
 .weather-body {
   height: 100vh;
   font-family: "Anek Devanagari", sans-serif;
@@ -41,69 +41,66 @@
   .zip-code,
   .search-button {
     margin-left: 10em;
-   
   }
 }
 
-
 .search-button {
-  padding-top: 5px;
+  padding-top: 4px;
 }
-.display-mainbox{
-     margin-top: 40px;
-   display: flex;
-   justify-content: center;
-   height: 375px;
+.display-mainbox {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  height: 375px;
 }
 
-.display-innerbox{
+.display-innerbox {
   border: 1px solid #3c2b64;
-  background: linear-gradient(30deg, #1111D6 0%, #fff 100%);
+  background: linear-gradient(30deg, #1111d6 0%, #fff 100%);
   width: 60%;
   margin-top: 20px;
   height: 280px;
   border-radius: 18px;
 }
-@media only screen and (max-width: 450px){
-  .display-innerbox{
+@media only screen and (max-width: 450px) {
+  .display-innerbox {
     width: 90%;
   }
-  .city-name, .zip-code,.form-control{
+  .city-name,
+  .zip-code {
     border: 1px solid blue;
-   width: 6em;
-   font-size: 0.7rem;
-
+    width: 7em;
   }
-  .zip-code{
+  .zip-code {
     margin-left: 25px;
   }
-  .search-button{
- font-size: 8px;
-  margin-left: 50px;
+  .search-button {
+    font-size: 8px;
+    margin-left: 50px;
   }
 }
-.date{
-  font-family: 'Open Sans', sans-serif;
+.date {
+  font-family: "Open Sans", sans-serif;
   color: white;
   font-size: 1.5rem;
   font-weight: 500;
-padding-left: 30px;
+  padding-left: 30px;
 }
-.time{
-  font-family: 'Lato', sans-serif;
+.time {
+  font-family: "Lato", sans-serif;
   color: white;
-  font-size: 3.0rem;
+  font-size: 3rem;
   padding-left: 0.3em;
   margin-top: 20px;
 }
-.temperature-box{
+.temperature-box {
   display: flex;
   font-size: 1.3rem;
   justify-content: space-around;
   color: white;
   margin-top: 30px;
 }
-.val{
+.val {
   font-size: 1.5rem;
   text-align: center;
 }

@@ -27,7 +27,7 @@ function error(err) {
 
   const options = {
     enableHighAccuracy: true,
-    timeout: 4000
+    timeout: 5000
   
 }
 navigator.geolocation.getCurrentPosition(success, error, options)
