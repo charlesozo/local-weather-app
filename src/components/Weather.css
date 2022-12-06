@@ -69,7 +69,7 @@
   .city-name,
   .zip-code {
     border: 1px solid blue;
-    width: 7em;
+    width: 6em;
   }
   .zip-code {
     margin-left: 25px;
