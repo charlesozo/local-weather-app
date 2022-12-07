@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const TOKEN = "4987e93328234a7eacd145029220512";
+const TOKEN = "800f69ea8a204c249a1155233220712";
 
 export default axios.create({
   baseURL: " https://api.weatherapi.com/v1",
